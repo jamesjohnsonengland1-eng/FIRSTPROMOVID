@@ -244,6 +244,70 @@ const CSS = `
 .pd-chamber-view { position:absolute; inset:0; background:var(--parch2); display:flex; flex-direction:column; opacity:0; pointer-events:none; transition:opacity .7s; }
 .pd-chamber-view.in { opacity:1; pointer-events:auto; }
 
+
+/* ── SCENE 4 — verdict ── */
+.pd-s4 { position:absolute; inset:0; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+
+/* dark verdict panel */
+.pd-verdict-panel { display:flex; flex-direction:column; align-items:center; gap:1.2vw; opacity:0; transform:translateY(16px); transition:opacity .6s .2s, transform .6s .2s; }
+.pd-verdict-panel.in { opacity:1; transform:none; }
+.pd-verdict-eyebrow { display:flex; align-items:center; gap:.5vw; font-size:clamp(6px,.55vw,10px); letter-spacing:.35em; text-transform:uppercase; color:var(--amber); }
+.pd-verdict-eyebrow svg { width:clamp(10px,1vw,18px); height:clamp(10px,1vw,18px); color:var(--amber); }
+.pd-verdict-title { font-family:'EB Garamond',Georgia,serif; font-size:clamp(18px,2.8vw,52px); font-weight:600; color:var(--parch); letter-spacing:-.01em; }
+.pd-scores { display:flex; align-items:center; gap:0; }
+.pd-score-col { display:flex; flex-direction:column; align-items:center; gap:.2vw; padding:0 2.2vw; }
+.pd-score-col + .pd-score-col { border-left:1px solid rgba(203,213,225,.15); }
+.pd-score-num { font-family:'EB Garamond',Georgia,serif; font-size:clamp(22px,3.5vw,64px); font-weight:600; color:var(--parch); line-height:1; }
+.pd-score-num.highlight { color:var(--amber-lt); }
+.pd-score-lbl { font-size:clamp(5px,.5vw,9px); letter-spacing:.3em; text-transform:uppercase; color:rgba(253,251,247,.4); }
+
+/* expand button */
+.pd-expand-btn { display:flex; align-items:center; justify-content:center; width:clamp(24px,2.5vw,44px); height:clamp(24px,2.5vw,44px); border:1px solid rgba(203,213,225,.2); background:rgba(30,41,59,.6); cursor:default; color:rgba(253,251,247,.5); font-size:clamp(8px,.8vw,14px); opacity:0; transition:opacity .4s .8s; }
+.pd-expand-btn.in { opacity:1; }
+
+/* verdict modal */
+.pd-modal-backdrop { position:absolute; inset:0; background:rgba(15,23,42,.7); backdrop-filter:blur(4px); opacity:0; transition:opacity .5s; }
+.pd-modal-backdrop.in { opacity:1; }
+.pd-modal { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) scale(.92); width:min(680px,62vw); max-height:82%; background:var(--parch2); border:1px solid rgba(180,160,120,.3); overflow:hidden; display:flex; flex-direction:column; opacity:0; transition:opacity .5s, transform .5s; box-shadow:0 40px 80px rgba(0,0,0,.5); }
+.pd-modal.in { opacity:1; transform:translate(-50%,-50%) scale(1); }
+
+.pd-modal-head { padding:.7vw 1vw; border-bottom:1px solid var(--rule2); display:flex; align-items:flex-start; justify-content:space-between; flex-shrink:0; background:var(--parch2); }
+.pd-modal-head-left { display:flex; align-items:center; gap:.5vw; }
+.pd-modal-head-icon { width:clamp(16px,1.8vw,30px); height:clamp(16px,1.8vw,30px); background:var(--ink); border-radius:3px; display:flex; align-items:center; justify-content:center; }
+.pd-modal-head-icon svg { width:60%; height:60%; color:var(--parch); }
+.pd-modal-head-title { font-family:'EB Garamond',Georgia,serif; font-size:clamp(11px,1.2vw,21px); font-weight:600; color:var(--txt); }
+.pd-modal-head-winner { font-size:clamp(5px,.5vw,9px); letter-spacing:.18em; text-transform:uppercase; color:var(--txt3); }
+.pd-modal-head-winner b { color:var(--amber); font-weight:600; }
+.pd-modal-close { width:clamp(14px,1.4vw,24px); height:clamp(14px,1.4vw,24px); display:flex; align-items:center; justify-content:center; color:var(--txt3); cursor:default; }
+.pd-modal-close svg { width:100%; height:100%; }
+
+.pd-modal-body { flex:1; overflow-y:auto; padding:.8vw 1vw; scrollbar-width:none; }
+.pd-modal-body::-webkit-scrollbar { display:none; }
+
+.pd-modal-section-title { font-family:'EB Garamond',Georgia,serif; font-size:clamp(10px,1.05vw,18px); font-weight:600; color:var(--txt); margin-bottom:.4vw; }
+.pd-modal-prose { font-size:clamp(6px,.6vw,10px); color:var(--txt2); line-height:1.6; margin-bottom:.8vw; }
+.pd-modal-pts-row { display:flex; gap:.8vw; margin-top:.5vw; }
+.pd-pts-card { flex:1; border:1px solid var(--rule2); padding:.6vw .8vw; }
+.pd-pts-card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:.3vw; }
+.pd-pts-label { font-size:clamp(5px,.5vw,9px); letter-spacing:.2em; text-transform:uppercase; color:var(--txt3); font-weight:600; }
+.pd-pts-score { font-family:'EB Garamond',Georgia,serif; font-size:clamp(14px,1.8vw,32px); font-weight:600; }
+.pd-pts-score.prop { color:var(--ink); }
+.pd-pts-score.opp { color:var(--amber); }
+.pd-pts-row { margin-bottom:.28vw; }
+.pd-pts-row-label { font-size:clamp(5px,.48vw,8px); font-weight:600; color:var(--txt); }
+.pd-pts-row-text { font-size:clamp(5px,.46vw,8px); color:var(--txt2); line-height:1.5; }
+
+/* outro */
+.pd-outro { position:absolute; inset:0; background:var(--parch2); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.8vw; opacity:0; transition:opacity .8s; pointer-events:none; }
+.pd-outro.in { opacity:1; }
+.pd-outro-logo-row { display:flex; align-items:center; gap:.6vw; }
+.pd-outro-logo-box { width:clamp(24px,2.8vw,48px); height:clamp(24px,2.8vw,48px); background:var(--ink); border-radius:4px; display:flex; align-items:center; justify-content:center; }
+.pd-outro-logo-box span { font-family:'EB Garamond',Georgia,serif; font-size:clamp(12px,1.4vw,26px); font-weight:600; color:var(--parch); }
+.pd-outro-wordmark { font-family:'EB Garamond',Georgia,serif; font-size:clamp(14px,1.6vw,28px); font-weight:600; color:var(--txt); }
+.pd-outro-rule { width:clamp(24px,3vw,50px); height:1px; background:var(--rule); }
+.pd-outro-tagline { font-family:'EB Garamond',Georgia,serif; font-size:clamp(10px,1.15vw,20px); font-style:italic; color:var(--txt); }
+.pd-outro-url { font-size:clamp(6px,.58vw,10px); color:var(--txt3); letter-spacing:.04em; }
+
 /* ── REPLAY ── */
 .pd-done { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,0); opacity:0; pointer-events:none; transition:background 1.2s 1s, opacity .7s .7s; }
 .pd-done.in { opacity:1; background:rgba(15,23,42,.55); pointer-events:auto; }
@@ -450,11 +514,11 @@ function Scene3({ active, onDone }: { active: boolean; onDone: () => void }) {
     (async () => {
       await sleep(200); if (dead.current) return; setBr(true);
       await sleep(600); if (dead.current) return; setCham(true);
-      // step through phases
-      for (let p = 1; p < 4; p++) {
-        await sleep(900); if (dead.current) return; setPhase(p);
+      // step through phases to Verdict
+      for (let p = 1; p <= 4; p++) {
+        await sleep(800); if (dead.current) return; setPhase(p);
       }
-      await sleep(1800);
+      await sleep(900);
       if (!dead.current) { dead.current = true; onDone(); }
     })();
     return () => { dead.current = true; };
@@ -586,8 +650,163 @@ function Scene3({ active, onDone }: { active: boolean; onDone: () => void }) {
   );
 }
 
+
+// ─── Scene 4 — Verdict + Outro ───────────────────────────────────────────────
+function Scene4({ active, onDone }: { active: boolean; onDone: () => void }) {
+  const [panelIn,   setPanel]   = useState(false);
+  const [expandIn,  setExpand]  = useState(false);
+  const [backdropIn,setBackdrop]= useState(false);
+  const [modalIn,   setModal]   = useState(false);
+  const [outroIn,   setOutro]   = useState(false);
+  const dead = useRef(false);
+
+  useEffect(() => {
+    if (!active) {
+      dead.current = true;
+      setPanel(false); setExpand(false); setBackdrop(false); setModal(false); setOutro(false);
+      return;
+    }
+    dead.current = false;
+    (async () => {
+      await sleep(300); if (dead.current) return; setPanel(true);
+      await sleep(900); if (dead.current) return; setExpand(true);
+      await sleep(700); if (dead.current) return; setBackdrop(true);
+      await sleep(200); if (dead.current) return; setModal(true);
+      await sleep(3200); if (dead.current) return;
+      setModal(false); setBackdrop(false);
+      await sleep(600); if (dead.current) return; setPanel(false);
+      await sleep(400); if (dead.current) return; setOutro(true);
+      await sleep(2800);
+      if (!dead.current) { dead.current = true; onDone(); }
+    })();
+    return () => { dead.current = true; };
+  }, [active, onDone]);
+
+  if (!active) return null;
+
+  return (
+    <div className="pd-s4">
+      <div className="pd-grain"/><div className="pd-scan"/>
+
+      {/* scores panel */}
+      <div className={`pd-verdict-panel${panelIn ? " in" : ""}`}>
+        <div className="pd-verdict-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26C17.81 13.47 19 11.38 19 9c0-3.87-3.13-7-7-7z"/>
+            <line x1="9" y1="21" x2="15" y2="21"/>
+          </svg>
+          ARBITER AI DECISION
+        </div>
+        <div className="pd-verdict-title">Final Verdict</div>
+        <div className="pd-scores">
+          <div className="pd-score-col">
+            <div className="pd-score-num">8.5</div>
+            <div className="pd-score-lbl">STYLE</div>
+          </div>
+          <div className="pd-score-col">
+            <div className="pd-score-num highlight">9.2</div>
+            <div className="pd-score-lbl">CONTENT</div>
+          </div>
+          <div className="pd-score-col">
+            <div className="pd-score-num">7.8</div>
+            <div className="pd-score-lbl">STRATEGY</div>
+          </div>
+        </div>
+        <div className={`pd-expand-btn${expandIn ? " in" : ""}`}>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" width="40%" height="40%">
+            <line x1="4" y1="10" x2="16" y2="10"/><line x1="10" y1="4" x2="10" y2="16"/>
+          </svg>
+        </div>
+      </div>
+
+      {/* modal */}
+      <div className={`pd-modal-backdrop${backdropIn ? " in" : ""}`}/>
+      <div className={`pd-modal${modalIn ? " in" : ""}`}>
+        <div className="pd-modal-head">
+          <div className="pd-modal-head-left">
+            <div className="pd-modal-head-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26C17.81 13.47 19 11.38 19 9c0-3.87-3.13-7-7-7z"/>
+                <line x1="9" y1="21" x2="15" y2="21"/>
+              </svg>
+            </div>
+            <div>
+              <div className="pd-modal-head-title">Arbiter AI Judgement</div>
+              <div className="pd-modal-head-winner">WINNER: <b>PROPOSITION</b> (CLEAR MARGIN)</div>
+            </div>
+          </div>
+          <div className="pd-modal-close">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <line x1="4" y1="4" x2="16" y2="16"/><line x1="16" y1="4" x2="4" y2="16"/>
+            </svg>
+          </div>
+        </div>
+        <div className="pd-modal-body">
+          <div className="pd-modal-section-title">Verdict Explanation</div>
+          <div className="pd-modal-prose">
+            Proposition wins clearly on both principle and evidence. The Lockean framing of legitimacy and consent established a high bar that Opposition never directly addressed — Proposition's closing asserted experts are just as likely to see the benefits for the people without engaging with accountability mechanisms. Opposition's 2008 financial crisis example in the closing was particularly devastating, demonstrating that experts themselves fail catastrophically and, crucially, cannot be removed when they do.
+          </div>
+          <div className="pd-modal-section-title">Debate Summary</div>
+          <div className="pd-modal-prose">
+            The debate centred on whether democracy can survive without open debate. Proposition argued open discourse is the structural foundation of democratic legitimacy; Opposition countered that managed information environments can preserve stability. The clash evolved into a dispute over principle vs. pragmatism, with Proposition's framework proving more coherent under cross-examination.
+          </div>
+          <div className="pd-modal-pts-row">
+            <div className="pd-pts-card">
+              <div className="pd-pts-card-head">
+                <div className="pd-pts-label">PROPOSITION</div>
+                <div className="pd-pts-score prop">73 pts</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Cohesion:</div>
+                <div className="pd-pts-row-text">Consistent Lockean framework across all three speeches, each building on the last.</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Strongest:</div>
+                <div className="pd-pts-row-text">Democratic accountability is structurally irreplaceable — flawed decisions can be corrected via open debate.</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Weakest:</div>
+                <div className="pd-pts-row-text">Insufficient engagement with Opposition's crisis-management argument in rebuttal.</div>
+              </div>
+            </div>
+            <div className="pd-pts-card">
+              <div className="pd-pts-card-head">
+                <div className="pd-pts-label">OPPOSITION</div>
+                <div className="pd-pts-score opp">60 pts</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Cohesion:</div>
+                <div className="pd-pts-row-text">Only one speaker carried the team; speeches were repetitive rather than progressively building.</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Strongest:</div>
+                <div className="pd-pts-row-text">Pragmatic stability argument had genuine force in the opening round.</div>
+              </div>
+              <div className="pd-pts-row">
+                <div className="pd-pts-row-label">Weakest:</div>
+                <div className="pd-pts-row-text">Failure to articulate how dissent would be permitted — leaving Proposition's core critique unanswered.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* outro */}
+      <div className={`pd-outro${outroIn ? " in" : ""}`}>
+        <div className="pd-outro-logo-row">
+          <div className="pd-outro-logo-box"><span>P.</span></div>
+          <div className="pd-outro-wordmark">Pocket Debate</div>
+        </div>
+        <div className="pd-outro-rule"/>
+        <div className="pd-outro-tagline">The Floor Is Yours.</div>
+        <div className="pd-outro-url">pocketdebate.com</div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Root ─────────────────────────────────────────────────────────────────────
-type Scene = "idle" | "s1" | "s2" | "s3";
+type Scene = "idle" | "s1" | "s2" | "s3" | "s4";
 
 export default function PocketDebatePromoSequence() {
   const [scene, setScene] = useState<Scene>("idle");
@@ -613,7 +832,8 @@ export default function PocketDebatePromoSequence() {
       )}
       <Scene1 active={scene==="s1"} onDone={() => setScene("s2")}/>
       <Scene2 active={scene==="s2"} onDone={() => setScene("s3")}/>
-      <Scene3 active={scene==="s3"} onDone={() => setDone(true)}/>
+      <Scene3 active={scene==="s3"} onDone={() => setScene("s4")}/>
+      <Scene4 active={scene==="s4"} onDone={() => setDone(true)}/>
       <div className={`pd-done${done?" in":""}`}>
         <button className="pd-replay" onClick={replay}>Replay</button>
       </div>
